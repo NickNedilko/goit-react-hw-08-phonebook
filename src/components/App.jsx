@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import SharedLayout from "./SharedLayout";
 
 import Contacts from "Pages/Contacts/Contacts";
+import { Home } from "Pages/Home/Home";
 
 export const App = () => {
   return (
@@ -11,6 +12,7 @@ export const App = () => {
 
     <Routes>
     <Route path="/" element={<SharedLayout />}>
+      <Route index element={<Home/>}/>
         <Route path="register" element={<Registranion/>}/>
         <Route path="login" element={<Login/>}/>
         <Route path="contacts" element={<Contacts/>}/>

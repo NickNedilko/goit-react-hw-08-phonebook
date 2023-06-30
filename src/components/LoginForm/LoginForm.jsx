@@ -1,36 +1,47 @@
 import Box from '@mui/material/Box';
+
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginThunk } from 'redux/auth/authThunk';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
+const initialState = {
+  email: '',
+  password: ''
+}
 
 const LoginForm = () =>{
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+
+
+
+  const [userData, setUserData] = useState(initialState)
+  const {email, password} = userData;
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+ 
 
   const  handleInputChange = (e)=>{
-const {name} = e.target
-switch (name) {
-  
-        case 'email':
-            setEmail(e.target.value)
-            break;
-            case 'password':
-                setPassword(e.target.value)
-                break;
-    default:
-        break;
-}
+const {name, value} = e.target
+setUserData(prev=>({...prev, [name]: value }))
   }
 
-const handleFormSubmit = (e) =>{
-e.preventDefault();
-const data ={  email, password}
-console.log(data)
-setEmail('');
-setPassword('')
 
+const handleFormSubmit = async (e) =>{
+e.preventDefault();
+try {
+  const data = await dispatch(loginThunk({ email, password})).unwrap()
+  if(data.token){
+    toast.success('Congradulation, wellcome to our site')
+    navigate('/contacts')
+  }
+} catch (error) {
+  toast.error('Error, do something else')
+}
+setUserData(initialState)
 }
 
     return (
@@ -47,7 +58,7 @@ setPassword('')
     >
       <TextField onChange={handleInputChange} value={email}  required  type='email' name='email'  label="Email" variant="outlined" />
       <TextField onChange={handleInputChange} value={password} required type='password' name='password'  label="Password" variant="outlined" />
-      <Button onClick={handleFormSubmit} variant="contained">Sing up</Button>
+      <Button onClick={handleFormSubmit} variant="contained">Login</Button>
 
     </Box>
         </Paper>

@@ -3,45 +3,52 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch} from 'react-redux';
+import { signUpThunk } from 'redux/auth/authThunk';
+import { Link } from '@mui/material';
+import { toast } from 'react-toastify';
 
+
+const initialState = {
+  name: '',
+  email: '',
+  password: ''
+}
 
 const RegistranionForm = () =>{
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+  const [userData, setUserData] = useState(initialState)
+  const {name, email, password} = userData;
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+ 
 
   const  handleInputChange = (e)=>{
-const {name} = e.target
-switch (name) {
-    case 'name':
-        setName(e.target.value)
-        break;
-        case 'email':
-            setEmail(e.target.value)
-            break;
-            case 'password':
-                setPassword(e.target.value)
-                break;
-    default:
-        break;
-}
+const {name, value} = e.target
+setUserData(prev=>({...prev, [name]: value }))
   }
 
-const handleFormSubmit = (e) =>{
+const handleFormSubmit = async (e) =>{
 e.preventDefault();
-const data ={ name, email, password}
-console.log(data)
-setEmail('');
-setName('')
-setPassword('')
+try {
+  const data = await dispatch(signUpThunk({name, email, password})).unwrap()
+  if(data.token){
+    toast.success('Congradulation, wellcome to our site')
+    navigate('/contacts')
 
+  }
+} catch (error) {
+  toast.error('Error, do something else')
 }
+setUserData(initialState)
+}
+
 
     return (
         <Paper elevation={4} sx={{
-          width: '50ch', height: '40ch',  padding: '5ch', display: 'block', margin: '15ch   auto', alignItems: 'center'
+          width: '50ch', height: '42ch',  padding: '5ch', display: 'block', margin: '15ch   auto', alignItems: 'center'
         }}>
-                    <h1 style={{textAlign:'center', color: 'blue'}} >PhoneBook</h1>
+                    <h1 style={{textAlign:'center', color: 'blue'}}>PhoneBook</h1>
           <p style={{textAlign:'center', color: 'blue'}}>Create a new account</p>
 <Box onSubmit={handleFormSubmit}
       component="form"
@@ -53,8 +60,9 @@ setPassword('')
       <TextField sx={{marginBottom: '5ch'}} onChange={handleInputChange} value={name} type='text' name='name'  label="Name" variant="outlined" />
       <TextField onChange={handleInputChange} value={email} pattern=".+@globex\.com" size="30" required id="email" type='email' name='email'  label="Email" variant="outlined" />
       <TextField onChange={handleInputChange} value={password} type='password' name='password'  label="Password" variant="outlined" />
-      <Button onClick={handleFormSubmit} variant="contained">Register</Button>
 
+    <Link sx={{cursor: 'pointer', justifyContent: 'center'}} children='Already has account?' href='login'/>
+      <Button onClick={handleFormSubmit} variant="contained">Sign up</Button>
     </Box>
         </Paper>
 
@@ -62,5 +70,6 @@ setPassword('')
     
     )
 }
+
 
 export default RegistranionForm;
