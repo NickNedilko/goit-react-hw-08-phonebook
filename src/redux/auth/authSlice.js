@@ -1,37 +1,51 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginThunk, signUpThunk } from "./authThunk";
+import { logOutThunk, loginThunk, signUpThunk } from "./authThunk";
+import  { authInitialState } from "./initialState";
 
 const handleFulfield = (state, { payload }) => {
-    console.log(payload.token)
     state.access_token = payload.token;
-    state.user = payload.user;
     state.isloading = false;
+    state.user = payload.user;
+
+
 };
+const handleLoginFulfield = (state, { payload }) => {
+    state.access_token = payload.token;
+    state.isloading = false;
+    state.user = payload.user;
+    state.error = ''
+    
+
+};
+
+const handleLogOutFulfield = (state)=>{
+    state.access_token = null;
+    state.isloading = false;
+    state.user = {name: null, email: null};
+
+} 
 const handlePending = (state) => { 
     state.isloading = true;
-    state.error = ''
+    state.error = '';
+   
 }
 
 const handleRejected = (state, {payload}) => {
-    state.error = payload
     state.isloading = false;
+    state.error = payload;
 }
 
-const initialState = {
-    access_token: '',
-    user: {name: null, email: null},
-    isLoading: false,
-    error: '',
-}
+
 
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState,
+    initialState: authInitialState ,
     extraReducers: builder => {
         builder
             .addCase(signUpThunk.fulfilled(), handleFulfield)
-            .addCase(loginThunk.fulfilled(), handleFulfield)
+            .addCase(loginThunk.fulfilled(), handleLoginFulfield)
+            .addCase(logOutThunk.fulfilled(), handleLogOutFulfield)
             .addMatcher((action) => action.type.endsWith('/pending'), handlePending)
             .addMatcher((action) => action.type.endsWith('/rejected'), handleRejected)
         
@@ -39,5 +53,5 @@ const authSlice = createSlice({
     
 })
 
-console.log(authSlice)
+
 export const authReducer  = authSlice.reducer;

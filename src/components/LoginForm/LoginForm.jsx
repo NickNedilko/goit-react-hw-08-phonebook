@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginThunk } from 'redux/auth/authThunk';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+
 
 const initialState = {
   email: '',
@@ -16,12 +16,10 @@ const initialState = {
 
 const LoginForm = () =>{
 
-
-
   const [userData, setUserData] = useState(initialState)
   const {email, password} = userData;
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  
  
 
   const  handleInputChange = (e)=>{
@@ -36,7 +34,7 @@ try {
   const data = await dispatch(loginThunk({ email, password})).unwrap()
   if(data.token){
     toast.success('Congradulation, wellcome to our site')
-    navigate('/contacts')
+    
   }
 } catch (error) {
   toast.error('Error, do something else')
@@ -62,8 +60,6 @@ setUserData(initialState)
 
     </Box>
         </Paper>
-
-
     
     )
 }

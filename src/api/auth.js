@@ -1,24 +1,14 @@
-// import axios from "axios";
+import axios from "axios";
 
 
-// const instanse = axios.create({
-//     baseURL: 'https://connections-api.herokuapp.com/',
-// })
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
-// export const signUp = async (body) => {
-//   try {
-//     const data = await  instanse.post('users/signup', body)
-//     return data
-//   } catch (error) {
-//     console.log(error)
-//   }
-    
-// }
+// Utility to add JWT
+export const setAuthHeader = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
 
-
-
-// export const login = async(body) => {
-//   const { data } = await instanse.post('users/login', body)
-//   console.log(data)
-//   return data;
-// }
+// Utility to remove JWT
+export const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = '';
+};
