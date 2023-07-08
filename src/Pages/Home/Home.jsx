@@ -1,9 +1,10 @@
+import css from './Home.module.css'
 
-export const Home = ()=>{
+export const Home = () => {
 
     return(
-        <div>
-            <p>Home</p>
+        <div className={css.wrapper}>
+            {/* <div className={css.img}>Home</div> */}
          
         </div>
     )
