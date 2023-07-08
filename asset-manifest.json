@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/goit-react-hw-08-phonebook/static/css/main.bd20a9eb.css",
-    "main.js": "/goit-react-hw-08-phonebook/static/js/main.dd0fe20e.js",
+    "main.css": "/goit-react-hw-08-phonebook/static/css/main.57337dbb.css",
+    "main.js": "/goit-react-hw-08-phonebook/static/js/main.2e596a8d.js",
+    "static/media/telefon_provod_stena_80746_1920x1080.jpg": "/goit-react-hw-08-phonebook/static/media/telefon_provod_stena_80746_1920x1080.1ee9e71e387c4efddec1.jpg",
     "index.html": "/goit-react-hw-08-phonebook/index.html",
-    "main.bd20a9eb.css.map": "/goit-react-hw-08-phonebook/static/css/main.bd20a9eb.css.map",
-    "main.dd0fe20e.js.map": "/goit-react-hw-08-phonebook/static/js/main.dd0fe20e.js.map"
+    "main.57337dbb.css.map": "/goit-react-hw-08-phonebook/static/css/main.57337dbb.css.map",
+    "main.2e596a8d.js.map": "/goit-react-hw-08-phonebook/static/js/main.2e596a8d.js.map"
   },
   "entrypoints": [
-    "static/css/main.bd20a9eb.css",
-    "static/js/main.dd0fe20e.js"
+    "static/css/main.57337dbb.css",
+    "static/js/main.2e596a8d.js"
   ]
 }
