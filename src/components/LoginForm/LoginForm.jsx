@@ -9,6 +9,7 @@ import { loginThunk } from 'redux/auth/authThunk';
 import { toast } from 'react-toastify';
 
 
+
 const initialState = {
   email: '',
   password: ''
@@ -46,7 +47,8 @@ setUserData(initialState)
         <Paper elevation={4} sx={{
           width: '50ch', height: '30ch',  padding: '5ch', display: 'block', margin: '15ch   auto'
         }}>
-          <h1 style={{textAlign:'center', color: 'blue'}} >PhoneBook</h1>
+        <h1 style={{ textAlign: 'center', color: 'blue' }} >PhoneBook</h1>
+      
 <Box onSubmit={handleFormSubmit}
       component="form"
       sx={{

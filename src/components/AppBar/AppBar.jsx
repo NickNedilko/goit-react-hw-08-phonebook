@@ -29,6 +29,7 @@ function MyAppBar() {
             {token ? <UserMenu/> : <AuthNav/>}
         </Toolbar>
       </AppBar>
+      
     </Box>
   );
 }

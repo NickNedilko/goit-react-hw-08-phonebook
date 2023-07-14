@@ -46,7 +46,7 @@ setUserData(initialState)
 
     return (
         <Paper elevation={4} sx={{
-          width: '50ch', height: '42ch',  padding: '5ch', display: 'block', margin: '15ch   auto', alignItems: 'center'
+          width: '50ch', height: '44ch',  padding: '3ch', display: 'block', margin: '15ch   auto', alignItems: 'center'
         }}>
                     <h1 style={{textAlign:'center', color: 'blue'}}>PhoneBook</h1>
           <p style={{textAlign:'center', color: 'blue'}}>Create a new account</p>
@@ -57,7 +57,7 @@ setUserData(initialState)
       }}
       autoComplete="off"
     >
-      <TextField sx={{marginBottom: '5ch'}} onChange={handleInputChange} value={name} type='text' name='name'  label="Name" variant="outlined" />
+      <TextField sx={{marginBottom: '4ch'}} onChange={handleInputChange} value={name} type='text' name='name'  label="Name" variant="outlined" />
       <TextField onChange={handleInputChange} value={email} pattern=".+@globex\.com" size="30" required id="email" type='email' name='email'  label="Email" variant="outlined" />
       <TextField onChange={handleInputChange} value={password} type='password' name='password'  label="Password" variant="outlined" />
 
