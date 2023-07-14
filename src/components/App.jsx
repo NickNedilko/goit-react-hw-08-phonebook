@@ -10,6 +10,11 @@ import { RestrictedRoute } from "./restrictedRoute";
 import { PrivatedRoute } from "./privateRoute";
 
 export const App = () => {
+  const str = 'dsvfdgbhfjkhgfdsdfgh';
+  const res = [...str].join('-<>-');
+  console.log(res)
+
+
   return (
     <div>
 

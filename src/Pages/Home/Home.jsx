@@ -1,3 +1,4 @@
+
 import css from './Home.module.css'
 
 export const Home = () => {
@@ -9,3 +10,5 @@ export const Home = () => {
         </div>
     )
 }  
+
+
